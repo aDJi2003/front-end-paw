@@ -4,9 +4,52 @@ import StartLogo from "../assets/images/start_paw.png";
 import { FaArrowRight } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
 
 const Start = () => {
   const navigate = useNavigate();
+
+  const [typedText, setTypedText] = useState("");
+  const currentTextIndexRef = useRef(0);
+  const charIndexRef = useRef(0);
+
+  const textArray = [
+    "Discover new beats.",
+    "Share your favorite tracks.",
+    "Create the soundtrack of your life.",
+    "With Melodify, every song tells a story.",
+    "Ready to tune in?",
+  ];
+
+  useEffect(() => {
+    const typeNextChar = () => {
+      const currentTextIndex = currentTextIndexRef.current;
+      const charIndex = charIndexRef.current;
+      const currentText = textArray[currentTextIndex];
+
+      if (charIndex < currentText.length) {
+        setTypedText((prev) => prev + currentText[charIndex]);
+        charIndexRef.current += 1;
+      } else if (currentTextIndex < textArray.length - 1) {
+        clearInterval(typingInterval);
+        setTimeout(() => {
+          currentTextIndexRef.current += 1;
+          charIndexRef.current = 0;
+          setTypedText("");
+          startTyping();
+        }, 1000);
+      } else {
+        clearInterval(typingInterval);
+      }
+    };
+
+    const startTyping = () => {
+      typingInterval = setInterval(typeNextChar, 100);
+    };
+
+    let typingInterval = setInterval(typeNextChar, 100);
+    return () => clearInterval(typingInterval);
+  }, []);
 
   const fadeInLeft = {
     initial: { opacity: 0, x: -50 },
@@ -36,8 +79,7 @@ const Start = () => {
               <p className="text-4xl text-white">Connect world through music</p>
             </div>
             <p className="text-2xl text-white">
-              Our vision is to revolutionize the way brands and advertisers
-              target, reach
+              {typedText}
             </p>
             <hr className="h-[2.5px] bg-gradient-to-r from-[#00F0FF] via-[#5200FF] to-[#FF2DF7] rounded-full" />
             <div className="rounded-full">
