@@ -15,7 +15,7 @@ const Start = () => {
   };
 
   return (
-    <div className="min-w-[100vw] min-h-[100vh] bg-black pl-[8vw] pr-[6vw] py-[5vh] flex justify-center flex-col">
+    <div className="min-w-[100vw] min-h-[100vh] bg-black px-[6vw] py-[5vh] flex justify-center flex-col">
       <div className="w-full h-[6vh] flex justify-between items-center">
         <div className="flex gap-3 items-center justify-center">
           <img src={Logo} alt="app_logo" width={30} height={30} />
