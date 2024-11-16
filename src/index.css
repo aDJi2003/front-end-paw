@@ -1,3 +1,88 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@keyframes wave-1 {
+    0%, 100% {
+      transform: scaleY(1);
+    }
+    50% {
+      transform: scaleY(1.5);
+    }
+  }
+  
+  @keyframes wave-2 {
+    0%, 100% {
+      transform: scaleY(1);
+    }
+    50% {
+      transform: scaleY(2);
+    }
+  }
+  
+  @keyframes wave-3 {
+    0%, 100% {
+      transform: scaleY(1);
+    }
+    50% {
+      transform: scaleY(1.8);
+    }
+  }
+  
+  @keyframes wave-4 {
+    0%, 100% {
+      transform: scaleY(1);
+    }
+    50% {
+      transform: scaleY(1.6);
+    }
+  }
+  
+  @keyframes wave-5 {
+    0%, 100% {
+      transform: scaleY(1);
+    }
+    50% {
+      transform: scaleY(1.9);
+    }
+  }
+  
+  .animate-wave-1 {
+    animation: wave-1 1s ease-in-out infinite;
+    animation-play-state: running;
+  }
+  
+  .animate-wave-2 {
+    animation: wave-2 1s ease-in-out infinite;
+    animation-play-state: running;
+    animation-delay: 0.1s;
+  }
+  
+  .animate-wave-3 {
+    animation: wave-3 1s ease-in-out infinite;
+    animation-play-state: running;
+    animation-delay: 0.2s;
+  }
+  
+  .animate-wave-4 {
+    animation: wave-4 1s ease-in-out infinite;
+    animation-play-state: running;
+    animation-delay: 0.3s;
+  }
+  
+  .animate-wave-5 {
+    animation: wave-5 1s ease-in-out infinite;
+    animation-play-state: running;
+    animation-delay: 0.4s;
+  }
+  
+  .paused {
+    animation-play-state: paused;
+  }
+
+  @font-face {
+    font-family: 'Jakarta Sans';
+    src: url('../assets/fonts/JakartaSans.otf') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+  }
