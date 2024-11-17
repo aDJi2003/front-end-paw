@@ -1,17 +1,18 @@
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { useState, useEffect, useRef } from "react";
+import { useMemo } from "react";
+import Particles from "react-tsparticles";
+import { loadFull } from "tsparticles";
+import { ReactTyped } from "react-typed";
 
 import Logo from "../assets/images/logo_paw.png";
 import SoundBar from "../component/SoundBar";
 import StartLogo from "../assets/images/start_paw.png";
 import { FaArrowRight } from "react-icons/fa";
+import particleImage from "../assets/images/star_particles_paw.png";
 
 const Start = () => {
   const navigate = useNavigate();
-  const [typedText, setTypedText] = useState("");
-  const currentTextIndexRef = useRef(0);
-  const charIndexRef = useRef(0);
 
   const textArray = [
     "Discover new beats.",
@@ -21,35 +22,35 @@ const Start = () => {
     "Ready to tune in?",
   ];
 
-  useEffect(() => {
-    const typeNextChar = () => {
-      const currentTextIndex = currentTextIndexRef.current;
-      const charIndex = charIndexRef.current;
-      const currentText = textArray[currentTextIndex];
+  const particlesInit = async (main) => {
+    await loadFull(main);
+  };
 
-      if (charIndex < currentText.length) {
-        setTypedText((prev) => prev + currentText[charIndex]);
-        charIndexRef.current += 1;
-      } else if (currentTextIndex < textArray.length - 1) {
-        clearInterval(typingInterval);
-        setTimeout(() => {
-          currentTextIndexRef.current += 1;
-          charIndexRef.current = 0;
-          setTypedText("");
-          startTyping();
-        }, 1000);
-      } else {
-        clearInterval(typingInterval);
-      }
-    };
-
-    const startTyping = () => {
-      typingInterval = setInterval(typeNextChar, 100);
-    };
-
-    let typingInterval = setInterval(typeNextChar, 100);
-    return () => clearInterval(typingInterval);
-  }, []);
+  const particlesOptions = useMemo(() => ({
+    fullScreen: { enable: false },
+    particles: {
+      number: { value: 50, density: { enable: true, value_area: 800 } },
+      shape: {
+        type: "image",
+        image: {
+          src: particleImage,
+          width: 3,
+          height: 3,
+        },
+      },
+      opacity: { value: 0.55 },
+      size: { value: 30, random: true },
+      move: {
+        enable: true,
+        speed: 0.5,
+        direction: "bottom-left",
+        random: false,
+        outModes: { default: "out" },
+      },
+    },
+    interactivity: { events: { onHover: { enable: false } } },
+    retina_detect: true,
+  }), []);
 
   const fadeInLeft = {
     initial: { opacity: 0, x: -50 },
@@ -59,6 +60,14 @@ const Start = () => {
 
   return (
     <div className="min-w-[100vw] min-h-[100vh] bg-black px-[4vw] py-[5vh] flex flex-col relative">
+      {/* Particles Effect */}
+      <Particles
+        id="tsparticles"
+        init={particlesInit}
+        options={particlesOptions}
+        className="absolute top-0 left-0 w-full h-full z-0"
+      />
+
       {/* Navbar */}
       <div className="w-full h-[6vh] flex justify-between items-center mb-5 lg:mb-0 z-10">
         <button
@@ -86,9 +95,14 @@ const Start = () => {
               Connect world through music
             </p>
           </div>
-          <p className="text-lg sm:text-xl lg:text-2xl text-white">
-            {typedText}
-          </p>
+          <ReactTyped
+            strings={textArray}
+            typeSpeed={50}
+            backSpeed={30}
+            backDelay={1000}
+            loop
+            className="text-lg sm:text-xl lg:text-2xl text-white"
+          />
           <hr className="h-[2px] bg-gradient-to-r from-[#00F0FF] via-[#5200FF] to-[#FF2DF7] rounded-full" />
           <div className="flex justify-center lg:justify-start">
             <button
@@ -106,7 +120,7 @@ const Start = () => {
           <motion.img
             src={StartLogo}
             alt="start_logo"
-            className="w-80 sm:w-[400px] lg:w-[500px] h-auto -translate-y-2 lg:-translate-y-[15px]"
+            className="w-[250px] sm:w-[400px] lg:w-[500px] h-auto -translate-y-2 lg:-translate-y-[15px]"
             initial={{ opacity: 0, x: 50 }}
             animate={{
               opacity: 1,
