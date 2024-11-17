@@ -1,14 +1,14 @@
-import Logo from "../assets/images/logo_paw.png";
-import SoundBar from "../component/SoundBar";
-import StartLogo from "../assets/images/start_paw.png";
-import { FaArrowRight } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect, useRef } from "react";
 
+import Logo from "../assets/images/logo_paw.png";
+import SoundBar from "../component/SoundBar";
+import StartLogo from "../assets/images/start_paw.png";
+import { FaArrowRight } from "react-icons/fa";
+
 const Start = () => {
   const navigate = useNavigate();
-
   const [typedText, setTypedText] = useState("");
   const currentTextIndexRef = useRef(0);
   const charIndexRef = useRef(0);
@@ -58,45 +58,55 @@ const Start = () => {
   };
 
   return (
-    <div className="min-w-[100vw] min-h-[100vh] bg-black px-[6vw] py-[5vh] flex justify-center flex-col">
-      <div className="w-full h-[6vh] flex justify-between items-center">
+    <div className="min-w-[100vw] min-h-[100vh] bg-black px-[4vw] py-[5vh] flex flex-col relative">
+      {/* Navbar */}
+      <div className="w-full h-[6vh] flex justify-between items-center mb-5 lg:mb-0 z-10">
         <button
-          className="flex gap-3 items-center justify-center"
+          className="flex gap-2 items-center justify-center"
           onClick={() => navigate("/")}
         >
-          <img src={Logo} alt="app_logo" width={30} height={30} />
-          <h2 className="text-3xl text-white">Melodify</h2>
+          <img src={Logo} alt="app_logo" className="w-8 h-8 lg:w-10 lg:h-10" />
+          <h2 className="text-2xl lg:text-3xl text-white">Melodify</h2>
         </button>
         <SoundBar />
       </div>
-      <div className="w-full h-[84vh] flex gap-5 items-center justify-center">
-        <div className="flex items-center gap-5 justify-between">
-          <motion.div
-            className="flex flex-col gap-10 max-w-[50%]"
-            {...fadeInLeft}
-          >
-            <div className="flex flex-col gap-4">
-              <h1 className="text-5xl text-transparent bg-clip-text font-bold bg-gradient-to-r from-[#00F0FF] via-[#5200FF] to-[#FF2DF7] leading-relaxed overflow-visible">
-                Start your journey with melodify
-              </h1>
-              <p className="text-4xl text-white">Connect world through music</p>
-            </div>
-            <p className="text-2xl text-white">{typedText}</p>
-            <hr className="h-[2.5px] bg-gradient-to-r from-[#00F0FF] via-[#5200FF] to-[#FF2DF7] rounded-full" />
-            <div className="rounded-full">
-              <button
-                className="flex items-center gap-2 px-6 py-3 text-lg font-semibold text-white bg-black rounded-full border border-[#00F0FF]"
-                onClick={() => navigate("/login")}
-              >
-                Get Started
-                <FaArrowRight className="text-[#00F0FF]" />
-              </button>
-            </div>
-          </motion.div>
+
+      {/* Main Content */}
+      <div className="w-full lg:h-[80vh] flex flex-col-reverse md:flex-col-reverse lg:flex-row items-center justify-center lg:justify-between gap-8 lg:gap-5 lg:pl-[5vw] z-10">
+        {/* Text Section */}
+        <motion.div
+          className="flex flex-col gap-6 lg:max-w-[50%]"
+          {...fadeInLeft}
+        >
+          <div className="flex flex-col gap-8">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl text-transparent bg-clip-text font-bold bg-gradient-to-r from-[#00F0FF] via-[#5200FF] to-[#FF2DF7] leading-normal pb-3">
+              Start your journey with Melodify
+            </h1>
+            <p className="text-xl sm:text-2xl lg:text-3xl text-white">
+              Connect world through music
+            </p>
+          </div>
+          <p className="text-lg sm:text-xl lg:text-2xl text-white">
+            {typedText}
+          </p>
+          <hr className="h-[2px] bg-gradient-to-r from-[#00F0FF] via-[#5200FF] to-[#FF2DF7] rounded-full" />
+          <div className="flex justify-center lg:justify-start">
+            <button
+              className="flex items-center gap-2 px-5 py-2 text-sm sm:text-lg font-semibold text-white bg-black rounded-full border border-[#00F0FF] hover:shadow-lg transition-shadow duration-300"
+              onClick={() => navigate("/login")}
+            >
+              Get Started
+              <FaArrowRight className="text-[#00F0FF]" />
+            </button>
+          </div>
+        </motion.div>
+
+        {/* Image Section */}
+        <div className="flex justify-center items-center lg:w-[50%]">
           <motion.img
             src={StartLogo}
             alt="start_logo"
-            className="-translate-y-[15px]"
+            className="w-80 sm:w-[400px] lg:w-[500px] h-auto -translate-y-2 lg:-translate-y-[15px]"
             initial={{ opacity: 0, x: 50 }}
             animate={{
               opacity: 1,
