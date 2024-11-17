@@ -25,20 +25,21 @@ const Register = () => {
   const [showRepeatPassword, setShowRepeatPassword] = useState(false);
 
   return (
-    <div className="min-w-[100vw] min-h-[100vh] flex justify-center items-center flex-col px-[6vw] py-[5vh] bg-[#100424] font-jakarta">
+    <div className="min-w-[100vw] min-h-[100vh] flex flex-col items-center px-[6vw] md:px-[4vw] lg:px-[5vw] py-[5vh] bg-[#100424] font-jakarta">
+      {/* Navbar */}
       <div className="w-full h-[6vh] flex justify-between items-center mb-[4vh]">
         <button
           className="flex gap-3 items-center justify-center"
           onClick={() => navigate("/")}
         >
           <img src={Logo} alt="app_logo" width={30} height={30} />
-          <h2 className="text-3xl text-white">Melodify</h2>
+          <h2 className="text-2xl md:text-3xl text-white">Melodify</h2>
         </button>
-        <div className="flex items-center">
-          <div className="flex gap-6 mr-[5vw]">
+        <div className="flex items-center gap-1 md:gap-4 lg:gap-6">
+          <div className="flex gap-1 md:gap-4 lg:gap-6">
             <Link
               to="/register"
-              className={`text-lg px-4 py-2 rounded-full ${
+              className={`text-sm sm:text-base md:text-lg px-4 py-2 rounded-full ${
                 isRegisterPage
                   ? "bg-purple-600 text-white shadow-lg"
                   : "text-white hover:bg-purple-600 hover:text-white"
@@ -48,7 +49,7 @@ const Register = () => {
             </Link>
             <Link
               to="/login"
-              className={`text-lg px-4 py-2 rounded-full ${
+              className={`text-sm sm:text-base md:text-lg px-4 py-2 rounded-full ${
                 isLoginPage
                   ? "bg-purple-600 text-white shadow-lg"
                   : "text-white hover:bg-purple-600 hover:text-white"
@@ -60,22 +61,27 @@ const Register = () => {
           <SoundBar />
         </div>
       </div>
-      <div className="w-4/5 h-[75vh] bg-[#08040c] rounded-3xl flex gap-5 mb-[5vh]">
-        <div className="w-1/2 relative h-full flex items-center justify-center">
+
+      {/* Main Content */}
+      <div className="w-full lg:w-5/6 xl:w-3/4 h-auto md:h-[75vh] bg-[#08040c] rounded-3xl flex flex-col md:flex-row gap-5 mb-[5vh] p-6 md:p-0">
+        {/* Image Section */}
+        <div className="hidden md:flex w-1/2 relative h-full items-center justify-center">
           <img
             src={RegisterLogo}
             alt="register_logo"
             className="w-full h-full rounded-3xl object-cover"
           />
           <div className="absolute inset-0 flex flex-col items-start justify-center p-8 text-white">
-            <h2 className="text-6xl font-bold">Nice to meet you :)</h2>
-            <p className="text-2xl mt-6">Just register to join with us</p>
+            <h2 className="text-4xl md:text-6xl font-bold">Nice to meet you :)</h2>
+            <p className="text-xl md:text-2xl mt-6">Just register to join with us</p>
           </div>
         </div>
-        <div className="w-1/2 flex flex-col justify-center">
+
+        {/* Form Section */}
+        <div className="w-full md:w-1/2 flex flex-col justify-center">
           <div className="flex flex-col gap-6">
-            <h2 className="text-white text-bold text-2xl">Register</h2>
-            <div className="flex gap-4 items-center">
+            <h2 className="text-white font-bold text-2xl md:text-3xl">Register</h2>
+            <div className="flex gap-2 md:gap-4 items-center justify-center">
               <SocialMediaButton
                 icon={FacebookLogo}
                 label="FACEBOOK"
@@ -96,10 +102,10 @@ const Register = () => {
               />
             </div>
           </div>
-          <div className="flex gap-6 my-[3vh] items-center justify-center w-full">
-            <hr className="w-[6vw] bg-[#8c8b91]" />
+          <div className="flex gap-4 md:gap-6 my-[3vh] items-center justify-center w-full">
+            <hr className="w-[4vw] md:w-[6vw] bg-[#8c8b91]" />
             <p className="text-[#8c8b91]">Or login with email</p>
-            <hr className="w-[6vw] bg-[#8c8b91]" />
+            <hr className="w-[4vw] md:w-[6vw] bg-[#8c8b91]" />
           </div>
           <div className="flex flex-col gap-4 w-full pr-[2vw]">
             <FormField
@@ -151,7 +157,7 @@ const Register = () => {
               </label>
             </div>
             <div className="flex items-center justify-center">
-              <button className="w-4/5 py-3 text-lg font-bold text-white bg-gradient-to-r from-[#5200FF] to-[#A100FF] rounded-full hover:shadow-lg transition-shadow duration-300">
+              <button className="w-full md:w-4/5 py-3 text-lg font-bold text-white bg-gradient-to-r from-[#5200FF] to-[#A100FF] rounded-full hover:shadow-lg transition-shadow duration-300">
                 CONTINUE
               </button>
             </div>

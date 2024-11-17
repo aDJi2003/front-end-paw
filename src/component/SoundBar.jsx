@@ -21,7 +21,7 @@ const SoundBar = () => {
   return (
     <motion.div
       onClick={handleClick}
-      className="fixed right-[6vw] top-12 z-10 flex cursor-pointer"
+      className="z-10 flex cursor-pointer"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.7 }}
