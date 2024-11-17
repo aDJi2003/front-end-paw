@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLocation, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 import Logo from "../assets/images/logo_paw.png";
 import SoundBar from "../component/SoundBar";
@@ -11,6 +12,7 @@ import SocialMediaButton from "../component/SocialMediaButton";
 import FormField from "../component/FormField";
 
 const Login = () => {
+  const navigate = useNavigate();
   const location = useLocation();
   const isRegisterPage = location.pathname === "/register";
   const isLoginPage = location.pathname === "/login";
@@ -22,10 +24,13 @@ const Login = () => {
   return (
     <div className="min-w-[100vw] min-h-[100vh] flex justify-center items-center flex-col px-[6vw] py-[5vh] bg-[#100424] font-jakarta">
       <div className="w-full h-[6vh] flex justify-between items-center mb-[4vh]">
-        <div className="flex gap-3 items-center justify-center">
+        <button
+          className="flex gap-3 items-center justify-center"
+          onClick={() => navigate("/")}
+        >
           <img src={Logo} alt="app_logo" width={30} height={30} />
           <h2 className="text-3xl text-white">Melodify</h2>
-        </div>
+        </button>
         <div className="flex items-center">
           <div className="flex gap-6 mr-[5vw]">
             <Link
@@ -122,10 +127,7 @@ const Login = () => {
                   Remember Me
                 </label>
               </div>
-              <Link
-                to=""
-                className="text-[#00F0FF] hover:underline text-sm"
-              >
+              <Link to="" className="text-[#00F0FF] hover:underline text-sm">
                 Forgot Password?
               </Link>
             </div>
@@ -142,5 +144,3 @@ const Login = () => {
 };
 
 export default Login;
-
-  

@@ -60,10 +60,13 @@ const Start = () => {
   return (
     <div className="min-w-[100vw] min-h-[100vh] bg-black px-[6vw] py-[5vh] flex justify-center flex-col">
       <div className="w-full h-[6vh] flex justify-between items-center">
-        <div className="flex gap-3 items-center justify-center">
+        <button
+          className="flex gap-3 items-center justify-center"
+          onClick={() => navigate("/")}
+        >
           <img src={Logo} alt="app_logo" width={30} height={30} />
           <h2 className="text-3xl text-white">Melodify</h2>
-        </div>
+        </button>
         <SoundBar />
       </div>
       <div className="w-full h-[84vh] flex gap-5 items-center justify-center">
@@ -78,9 +81,7 @@ const Start = () => {
               </h1>
               <p className="text-4xl text-white">Connect world through music</p>
             </div>
-            <p className="text-2xl text-white">
-              {typedText}
-            </p>
+            <p className="text-2xl text-white">{typedText}</p>
             <hr className="h-[2.5px] bg-gradient-to-r from-[#00F0FF] via-[#5200FF] to-[#FF2DF7] rounded-full" />
             <div className="rounded-full">
               <button
