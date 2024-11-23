@@ -14,6 +14,7 @@ import Artist4 from "../assets/images/artist_4_paw.png";
 import Artist5 from "../assets/images/artist_5_paw.png";
 import Artist6 from "../assets/images/artist_6_paw.png";
 import TrendingSongCard from "../component/TrendingSongCard";
+import NavBar from "../component/NavBar";
 
 const Home = () => {
   const songs = [
@@ -152,8 +153,10 @@ const Home = () => {
 
   return (
     <div className="min-h-screen max-w-screen flex font-jakarta overflow-y-auto">
-      {/* Sidebar */}
-      <div className="w-1/5 bg-[#181818] border-r-2 border-[#FF2DF7]"></div>
+      {/* NavBar */}
+      <div className="w-1/5 bg-[#181818] border-r-2 border-[#FF2DF7]">
+        <NavBar/>
+      </div>
       {/* Main Home */}
       <div className="w-4/5 bg-[#181818] px-[3vw] py-[4vh]">
         {/* Top Songs */}
