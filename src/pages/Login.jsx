@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import Logo from "../assets/images/logo_paw.png";
 import SoundBar from "../component/SoundBar";
@@ -20,6 +21,25 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [message, setMessage] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("http://localhost:8080/api/login", {
+        email,
+        password,
+      });
+
+      localStorage.setItem("token", response.data.data);
+
+      setMessage("Login berhasil! Anda akan diarahkan ke dashboard...");
+
+      setTimeout(() => navigate("/dashboard"), 2000);
+    } catch (error) {
+      setMessage(error.response?.data?.message || "Login gagal. Coba lagi.");
+    }
+  };
 
   return (
     <div className="min-w-[100vw] min-h-[100vh] flex justify-center items-center flex-col px-[6vw] py-[5vh] bg-[#100424] font-jakarta">
