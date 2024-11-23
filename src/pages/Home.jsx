@@ -13,6 +13,7 @@ import Artist3 from "../assets/images/artist_3_paw.png";
 import Artist4 from "../assets/images/artist_4_paw.png";
 import Artist5 from "../assets/images/artist_5_paw.png";
 import Artist6 from "../assets/images/artist_6_paw.png";
+import TrendingSongCard from "../component/TrendingSongCard";
 
 const Home = () => {
   const songs = [
@@ -92,10 +93,68 @@ const Home = () => {
     },
   ];
 
+  const trendingSongs = [
+    {
+      id: 1,
+      title: "Sorfcore",
+      artist: "The Neighbourhood",
+      releaseDate: "Nov 4, 2023",
+      album: "Hard to Imagine the Neighbourhood",
+      time: "4:50",
+      image: Song1,
+    },
+    {
+      id: 2,
+      title: "Skyfall Beats",
+      artist: "Nightmares",
+      releaseDate: "Oct 26, 2023",
+      album: "Nightmares",
+      time: "3:16",
+      image: Song2,
+    },
+    {
+      id: 3,
+      title: "Greedy",
+      artist: "Tate McRae",
+      releaseDate: "Dec 30, 2023",
+      album: "Greedy",
+      time: "4:12",
+      image: Song3,
+    },
+    {
+      id: 4,
+      title: "Lovin On Me",
+      artist: "Jack Harlow",
+      releaseDate: "Dec 30, 2023",
+      album: "Lovin On Me",
+      time: "2:56",
+      image: Song4,
+    },
+    {
+      id: 5,
+      title: "Pain the Town Red",
+      artist: "Doja Cat",
+      releaseDate: "Dec 29, 2023",
+      album: "Paint The Town Red",
+      time: "3:32",
+      image: Song5,
+    },
+    {
+      id: 6,
+      title: "New Song",
+      artist: "Artist Name",
+      releaseDate: "Jan 1, 2024",
+      album: "New Album",
+      time: "3:45",
+      image: Song1,
+    },
+  ];  
+
   return (
     <div className="min-h-screen w-screen flex font-jakarta overflow-y-auto">
       {/* Sidebar */}
       <div className="w-1/5 bg-[#181818] border-r-2 border-[#FF2DF7]"></div>
+      {/* Main Home */}
       <div className="w-4/5 bg-[#181818] px-[3vw] py-[4vh]">
         {/* Top Songs */}
         <div className="w-full mb-[5vh]">
@@ -119,7 +178,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-        <div className="w-full mb-5">
+        <div className="w-full mb-[5vh]">
           <h2 className="text-3xl font-bold text-white">
             Popular <span className="text-[#00F0FF]">Artist</span>
           </h2>
@@ -134,6 +193,9 @@ const Home = () => {
               <p className="text-sm text-white font-bold">View All</p>
             </div>
           </div>
+        </div>
+        <div className="w-full mb-[5vh]">
+            <TrendingSongCard songs={trendingSongs} />
         </div>
       </div>
     </div>
