@@ -151,7 +151,7 @@ const Home = () => {
   ];  
 
   return (
-    <div className="min-h-screen w-screen flex font-jakarta overflow-y-auto">
+    <div className="min-h-screen max-w-screen flex font-jakarta overflow-y-auto">
       {/* Sidebar */}
       <div className="w-1/5 bg-[#181818] border-r-2 border-[#FF2DF7]"></div>
       {/* Main Home */}
