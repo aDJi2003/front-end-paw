@@ -86,3 +86,26 @@
     font-weight: 400;
     font-style: normal;
   }
+
+.custom-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #5200FF #1E1E1E;
+}
+
+.custom-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb {
+  background: #5200FF;
+  border-radius: 10px;
+}
+
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+  background: #00F0FF;
+}
+
+.custom-scroll::-webkit-scrollbar-track {
+  background: #1E1E1E;
+  border-radius: 10px;
+}
