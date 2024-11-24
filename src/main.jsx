@@ -13,6 +13,7 @@ import Song from './pages/Song';
 import Favorite from './pages/Favorite';
 import Setting from './pages/Setting';
 import Playlist from './pages/Playlist';
+import Artist from './pages/Artist';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -26,6 +27,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/favorite" element={<Favorite />} />
         <Route path="/setting" element={<Setting />} />
         <Route path="/playlist" element={<Playlist />} />
+        <Route path="/artist" element={<Artist />} />
         <Route path="/artist/:artistName" element={<ArtistDetail />} />
         <Route path="/song/:songTitle" element={<SongDetail />} />
         <Route path="/song" element={<Song />} />
