@@ -1,12 +1,33 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import { FaHeart, FaEllipsisV } from "react-icons/fa";
+import {
+  FaHeart,
+  FaEllipsisV,
+  FaPlus,
+  FaListAlt,
+  FaPlay,
+  FaPause,
+  FaMusic,
+} from "react-icons/fa";
 
-const TrendingSongCard = ({ songs, heading, highlight, initialDisplayCount }) => {
+const TrendingSongCard = ({
+  songs,
+  heading,
+  highlight,
+  initialDisplayCount,
+}) => {
   const [showAll, setShowAll] = useState(false);
   const [likedSongs, setLikedSongs] = useState({});
   const [openMenu, setOpenMenu] = useState(null);
   const [playingSong, setPlayingSong] = useState(null);
+  const [hoveredPlaylist, setHoveredPlaylist] = useState(null);
+
+  const playlists = [
+    { id: 1, name: "Add New Playlist", icon: <FaPlus /> },
+    { id: 2, name: "Playlist A", icon: <FaListAlt /> },
+    { id: 3, name: "Playlist B", icon: <FaListAlt /> },
+    { id: 4, name: "Playlist C", icon: <FaListAlt /> },
+  ];
 
   const toggleLike = (songId) => {
     setLikedSongs((prev) => ({
@@ -24,8 +45,9 @@ const TrendingSongCard = ({ songs, heading, highlight, initialDisplayCount }) =>
     setOpenMenu(null);
   };
 
-  const addToPlaylist = (songId) => {
-    console.log(`Added song ID: ${songId} to playlist`);
+  const addToPlaylist = (songId, playlistName) => {
+    console.log(`Added song ID: ${songId} to ${playlistName}`);
+    setHoveredPlaylist(null);
     setOpenMenu(null);
   };
 
@@ -82,19 +104,51 @@ const TrendingSongCard = ({ songs, heading, highlight, initialDisplayCount }) =>
                 </div>
                 {/* Dropdown Menu */}
                 {openMenu === song.id && (
-                  <div className="absolute top-10 right-0 bg-gray-800 text-white rounded-md shadow-lg p-2 z-10">
+                  <div className="absolute top-10 right-0 bg-gray-800 text-white rounded-md shadow-lg py-1 z-10">
                     <button
-                      className="block w-full px-4 py-2 text-left hover:bg-gray-700"
+                      className="flex items-center gap-2 w-full px-4 py-2 text-left hover:bg-gray-700"
                       onClick={() => togglePlayPause(song.id)}
                     >
-                      {playingSong === song.id ? "Pause Song" : "Play Song"}
+                      {playingSong === song.id ? (
+                        <>
+                          <FaPause /> Pause Song
+                        </>
+                      ) : (
+                        <>
+                          <FaPlay /> Play Song
+                        </>
+                      )}
                     </button>
-                    <button
-                      className="block w-full px-4 py-2 text-left hover:bg-gray-700"
-                      onClick={() => addToPlaylist(song.id)}
+                    <div
+                      className="relative group"
+                      onMouseEnter={() => setHoveredPlaylist(song.id)}
+                      onMouseLeave={() => setHoveredPlaylist(null)}
                     >
-                      Add to Playlist
-                    </button>
+                      <button className="flex items-center gap-2 w-full px-4 py-2 text-left hover:bg-gray-700">
+                        <FaMusic /> Add to Playlist
+                      </button>
+                      {hoveredPlaylist === song.id && (
+                        <div
+                          className="absolute top-0 right-full bg-gray-700 text-white rounded-md shadow-lg z-10"
+                          style={{
+                            display: "inline-block",
+                            whiteSpace: "nowrap",
+                          }}
+                        >
+                          {playlists.map((playlist) => (
+                            <button
+                              key={playlist.id}
+                              className="flex items-center gap-2 px-4 py-2 text-left hover:bg-gray-600 w-full"
+                              onClick={() =>
+                                addToPlaylist(song.id, playlist.name)
+                              }
+                            >
+                              {playlist.icon} {playlist.name}
+                            </button>
+                          ))}
+                        </div>
+                      )}
+                    </div>
                   </div>
                 )}
               </td>
