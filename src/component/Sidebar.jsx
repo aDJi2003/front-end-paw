@@ -41,7 +41,7 @@ const Sidebar = () => {
         <ul className="space-y-1 mt-1">
           <SidebarButton to="/home" icon={FaHome} label="Home" />
           <SidebarButton to="/song" icon={FaMusic} label="Songs" />
-          <SidebarButton to="/artists" icon={FaMicrophone} label="Artists" />
+          <SidebarButton to="/artist" icon={FaMicrophone} label="Artists" />
         </ul>
 
         {/* Playlist Section */}
