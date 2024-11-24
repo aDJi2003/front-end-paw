@@ -115,7 +115,7 @@ const Song = () => {
       <div className="w-4/5 bg-[#181818] px-[3vw] py-[4vh]">
         {/* Trending Songs */}
         <div className="w-full mb-[5vh]">
-            <TrendingSongCard songs={trendingSongs} />
+            <TrendingSongCard songs={trendingSongs} heading="Trending" highlight="Songs" initialDisplayCount={5} />
         </div>
         {/* New Release Songs */}
         <div className="w-full mb-[5vh]">
