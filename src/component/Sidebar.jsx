@@ -47,7 +47,7 @@ const Sidebar = () => {
         {/* Playlist Section */}
         <h2 className="text-sm font-semibold text-gray-500 uppercase mt-4">Playlist and Favorite</h2>
         <ul className="space-y-1 mt-2">
-          <SidebarButton to="/favorites" icon={AiOutlineHeart} label="Your Favorites" />
+          <SidebarButton to="/favorite" icon={AiOutlineHeart} label="Your Favorites" />
           <SidebarButton to="/add-playlist" icon={AiOutlinePlus} label="Add Playlist" />
         </ul>
 
