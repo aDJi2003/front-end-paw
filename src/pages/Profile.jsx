@@ -3,18 +3,32 @@ import Sidebar from "../component/Sidebar";
 import FormField from "../component/FormField";
 
 import Artist1 from "../assets/images/artist_1_paw.png";
+import { getUsername } from "../services/auth.service";
+import { getEmail } from "../services/auth.service";
+
+const token = localStorage.getItem("token");
+console.log(token)
+console.log(getUsername(token))
 
 const Profile = () => {
+  const [profileImage, setProfileImage] = useState(Artist1);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [showDeletePassword, setShowDeletePassword] = useState(false);
+  const [showDeleteConfirmPassword, setShowDeleteConfirmPassword] =
+    useState(false);
+  const fileInputRef = useRef(null);
+
   const [formData, setFormData] = useState({
-    username: "User1",
-    email: "user1@gmail.com",
+    username: getUsername(token),
+    email: getEmail(token),
     password: "abcdefgh",
     confirmPassword: "abcdefgh",
   });
 
   const [confirmedData, setConfirmedData] = useState({
-    username: "User1",
-    email: "user1@gmail.com",
+    username: getUsername(token),
+    email: getEmail(token),
   });
 
   const [deleteData, setDeleteData] = useState({
@@ -23,14 +37,10 @@ const Profile = () => {
     confirmPassword: "",
   });
 
-  const [profileImage, setProfileImage] = useState(Artist1);
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-  const [showDeletePassword, setShowDeletePassword] = useState(false);
-  const [showDeleteConfirmPassword, setShowDeleteConfirmPassword] =
-    useState(false);
-
-  const fileInputRef = useRef(null);
+  
+//   useEffect(() => {
+//     setUsername(getUsername(token));
+// },[]);
 
   const handleInputChange = (field, value) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
