@@ -2,7 +2,7 @@ import { useState } from "react";
 import PropTypes from "prop-types";
 import { FaHeart, FaEllipsisV } from "react-icons/fa";
 
-const TrendingSongCard = ({ songs }) => {
+const TrendingSongCard = ({ songs, heading, highlight, initialDisplayCount }) => {
   const [showAll, setShowAll] = useState(false);
   const [likedSongs, setLikedSongs] = useState({});
   const [openMenu, setOpenMenu] = useState(null);
@@ -29,12 +29,12 @@ const TrendingSongCard = ({ songs }) => {
     setOpenMenu(null);
   };
 
-  const displayedSongs = showAll ? songs : songs.slice(0, 5);
+  const displayedSongs = showAll ? songs : songs.slice(0, initialDisplayCount);
 
   return (
     <div className="w-full">
       <h2 className="text-3xl font-bold text-white">
-        Trending <span className="text-[#00F0FF]">Songs</span>
+        {heading} <span className="text-[#00F0FF]">{highlight}</span>
       </h2>
       <table className="w-full mt-4 text-left text-white">
         <thead>
@@ -126,6 +126,9 @@ TrendingSongCard.propTypes = {
       image: PropTypes.string.isRequired,
     })
   ).isRequired,
+  heading: PropTypes.string.isRequired,
+  highlight: PropTypes.string.isRequired,
+  initialDisplayCount: PropTypes.number.isRequired,
 };
 
 export default TrendingSongCard;

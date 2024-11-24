@@ -10,6 +10,7 @@ import ArtistDetail from './pages/ArtistDetail';
 import SongDetail from './pages/SongDetail';
 import Profile from './pages/Profile';
 import Song from './pages/Song';
+import Favorite from './pages/Favorite';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -20,6 +21,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/register" element={<Register />} />
         <Route path="/home" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/favorite" element={<Favorite />} />
         <Route path="/artist/:artistName" element={<ArtistDetail />} />
         <Route path="/song/:songTitle" element={<SongDetail />} />
         <Route path="/song" element={<Song />} />

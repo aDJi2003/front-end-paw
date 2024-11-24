@@ -198,7 +198,7 @@ const Home = () => {
           </div>
         </div>
         <div className="w-full mb-[5vh]">
-            <TrendingSongCard songs={trendingSongs} />
+            <TrendingSongCard songs={trendingSongs} heading="Trending" highlight="Songs" initialDisplayCount={5} />
         </div>
       </div>
     </div>
