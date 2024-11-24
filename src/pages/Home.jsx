@@ -1,6 +1,8 @@
 import SongCard from "../component/SongCard";
 import { AiOutlinePlus } from "react-icons/ai";
 import ArtistCard from "../component/ArtistCard";
+import TrendingSongCard from "../component/TrendingSongCard";
+import Sidebar from "../component/Sidebar";
 
 import Song1 from "../assets/images/song_1_paw.png";
 import Song2 from "../assets/images/song_2_paw.png";
@@ -13,8 +15,6 @@ import Artist3 from "../assets/images/artist_3_paw.png";
 import Artist4 from "../assets/images/artist_4_paw.png";
 import Artist5 from "../assets/images/artist_5_paw.png";
 import Artist6 from "../assets/images/artist_6_paw.png";
-import TrendingSongCard from "../component/TrendingSongCard";
-import NavBar from "../component/NavBar";
 
 const Home = () => {
   const songs = [
@@ -153,9 +153,9 @@ const Home = () => {
 
   return (
     <div className="min-h-screen max-w-screen flex font-jakarta overflow-y-auto">
-      {/* NavBar */}
+      {/* Sidebar */}
       <div className="w-1/5 bg-[#181818] border-r-2 border-[#FF2DF7]">
-        <NavBar/>
+        <Sidebar />
       </div>
       {/* Main Home */}
       <div className="w-4/5 bg-[#181818] px-[3vw] py-[4vh]">
