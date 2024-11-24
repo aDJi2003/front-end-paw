@@ -39,8 +39,8 @@ const Sidebar = () => {
         {/* Menu */}
         <h2 className="text-sm font-semibold text-gray-500 uppercase mt-1">Menu</h2>
         <ul className="space-y-1 mt-1">
-          <SidebarButton to="/Home" icon={FaHome} label="Home" />
-          <SidebarButton to="/Song" icon={FaMusic} label="Songs" />
+          <SidebarButton to="/home" icon={FaHome} label="Home" />
+          <SidebarButton to="/song" icon={FaMusic} label="Songs" />
           <SidebarButton to="/artists" icon={FaMicrophone} label="Artists" />
         </ul>
 
@@ -55,7 +55,7 @@ const Sidebar = () => {
         <h2 className="text-sm font-semibold text-gray-500 uppercase mt-4">General</h2>
         <ul className="space-y-1 mt-1">
           <SidebarButton to="/profile" icon={FaUser} label="Profile" />
-          <SidebarButton to="/settings" icon={FaCog} label="Settings" />
+          <SidebarButton to="/setting" icon={FaCog} label="Settings" />
           <SidebarButton
             to="/"
             icon={FaSignOutAlt}
