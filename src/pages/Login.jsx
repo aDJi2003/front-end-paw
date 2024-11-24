@@ -33,9 +33,7 @@ const Login = () => {
 
       localStorage.setItem("token", response.data.data);
 
-      setMessage("Login berhasil! Anda akan diarahkan ke dashboard...");
-
-      setTimeout(() => navigate("/dashboard"), 2000);
+      setTimeout(() => navigate("/home"), 2000);
     } catch (error) {
       setMessage(error.response?.data?.message || "Login gagal. Coba lagi.");
     }
@@ -156,10 +154,13 @@ const Login = () => {
               </Link>
             </div>
             <div className="flex items-center justify-center">
-              <button className="w-full md:w-4/5 py-3 text-lg font-bold text-white bg-gradient-to-r from-[#5200FF] to-[#A100FF] rounded-full hover:shadow-lg transition-shadow duration-300">
+              <button className="w-full md:w-4/5 py-3 text-lg font-bold text-white bg-gradient-to-r from-[#5200FF] to-[#A100FF] rounded-full hover:shadow-lg transition-shadow duration-300" onClick={handleSubmit}>
                 CONTINUE
               </button>
             </div>
+            {message && (
+              <p className="text-red-500 text-sm mt-4">{message}</p>
+            )}
           </div>
         </div>
       </div>
