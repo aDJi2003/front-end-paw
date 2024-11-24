@@ -3,10 +3,9 @@ import {
   FaHome,
   FaMusic,
   FaMicrophone,
-  FaClock,
-  FaHeadphones,
   FaCog,
   FaSignOutAlt,
+  FaUser,
 } from "react-icons/fa";
 import { AiOutlineHeart, AiOutlinePlus } from "react-icons/ai";
 import Logo from "../assets/images/logo_paw.png";
@@ -45,13 +44,6 @@ const Sidebar = () => {
           <SidebarButton to="/artists" icon={FaMicrophone} label="Artists" />
         </ul>
 
-        {/* Library Section */}
-        <h2 className="text-sm font-semibold text-gray-500 uppercase mt-4">Library</h2>
-        <ul className="space-y-1 mt-1">
-          <SidebarButton to="/recently-added" icon={FaClock} label="Recently Added" />
-          <SidebarButton to="/most-played" icon={FaHeadphones} label="Most Played" />
-        </ul>
-
         {/* Playlist Section */}
         <h2 className="text-sm font-semibold text-gray-500 uppercase mt-4">Playlist and Favorite</h2>
         <ul className="space-y-1 mt-2">
@@ -62,6 +54,7 @@ const Sidebar = () => {
         {/* General Section */}
         <h2 className="text-sm font-semibold text-gray-500 uppercase mt-4">General</h2>
         <ul className="space-y-1 mt-1">
+          <SidebarButton to="/profile" icon={FaUser} label="Profile" />
           <SidebarButton to="/settings" icon={FaCog} label="Settings" />
           <SidebarButton
             to="/"
