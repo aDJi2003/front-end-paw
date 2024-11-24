@@ -5,7 +5,7 @@ const ArtistCard = ({ image, name }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/artist/${name}`);
+    navigate(`/artist/${name}`, { state: { image } });
   };
 
   return (
