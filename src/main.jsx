@@ -6,7 +6,7 @@ import Start from './pages/Start'
 import Login from './pages/Login'
 import Register from './pages/Register';
 import Home from './pages/Home';
-import Artist from './pages/Artist';
+import ArtistDetail from './pages/ArtistDetail';
 import Song from './pages/Song';
 
 createRoot(document.getElementById('root')).render(
@@ -17,7 +17,7 @@ createRoot(document.getElementById('root')).render(
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/artist/:artistName" element={<Artist />} />
+        <Route path="/artist/:artistName" element={<ArtistDetail />} />
         <Route path="/song/:songTitle" element={<Song />} />
       </Routes>
     </Router>
