@@ -23,6 +23,35 @@ const Register = () => {
   const [repeatPassword, setRepeatPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showRepeatPassword, setShowRepeatPassword] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+
+  const handleRegister = async () => {
+    if (password !== repeatPassword) {
+      setErrorMessage("Password dan Repeat Password tidak cocok!");
+      return;
+    }
+
+    try {
+      const response = await fetch("http://localhost:8080/api/users", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, email, password }),
+      });
+
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.message || "Registrasi gagal");
+      }
+
+      setSuccessMessage("Registrasi berhasil! Silakan login.");
+      setErrorMessage("");
+      navigate("/login");
+    } catch (error) {
+      setErrorMessage(error.message);
+      setSuccessMessage("");
+    }
+  };
 
   return (
     <div className="min-w-[100vw] min-h-[100vh] flex flex-col items-center px-[6vw] md:px-[4vw] lg:px-[5vw] py-[5vh] bg-[#100424] font-jakarta">
@@ -72,15 +101,21 @@ const Register = () => {
             className="w-full h-full rounded-3xl object-cover"
           />
           <div className="absolute inset-0 flex flex-col items-start justify-center p-8 text-white">
-            <h2 className="text-4xl md:text-6xl font-bold">Nice to meet you :)</h2>
-            <p className="text-xl md:text-2xl mt-6">Just register to join with us</p>
+            <h2 className="text-4xl md:text-6xl font-bold">
+              Nice to meet you :)
+            </h2>
+            <p className="text-xl md:text-2xl mt-6">
+              Just register to join with us
+            </p>
           </div>
         </div>
 
         {/* Form Section */}
         <div className="w-full md:w-1/2 flex flex-col justify-center">
           <div className="flex flex-col gap-6">
-            <h2 className="text-white font-bold text-2xl md:text-3xl">Register</h2>
+            <h2 className="text-white font-bold text-2xl md:text-3xl">
+              Register
+            </h2>
             <div className="flex gap-2 md:gap-4 items-center justify-center">
               <SocialMediaButton
                 icon={FacebookLogo}
@@ -157,10 +192,16 @@ const Register = () => {
               </label>
             </div>
             <div className="flex items-center justify-center">
-              <button className="w-full md:w-4/5 py-3 text-lg font-bold text-white bg-gradient-to-r from-[#5200FF] to-[#A100FF] rounded-full hover:shadow-lg transition-shadow duration-300">
+              <button className="w-full md:w-4/5 py-3 text-lg font-bold text-white bg-gradient-to-r from-[#5200FF] to-[#A100FF] rounded-full hover:shadow-lg transition-shadow duration-300" onClick={handleRegister}>
                 CONTINUE
               </button>
             </div>
+            {errorMessage && (
+              <p className="text-red-500 text-sm mt-4">{errorMessage}</p>
+            )}
+            {successMessage && (
+              <p className="text-red-500 text-sm mt-4">{successMessage}</p>
+            )}
           </div>
         </div>
       </div>
