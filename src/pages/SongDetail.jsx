@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 
-const Song = () => {
+const SongDetail = () => {
   const { songTitle } = useParams();
 
   return (
@@ -10,4 +10,4 @@ const Song = () => {
   );
 };
 
-export default Song;
+export default SongDetail;
