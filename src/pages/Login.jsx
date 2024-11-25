@@ -26,7 +26,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("http://deploypaw.vercel.app/api/login", {
+      const response = await axios.post("https://deploypaw.vercel.app//api/login", {
         email,
         password,
       });
