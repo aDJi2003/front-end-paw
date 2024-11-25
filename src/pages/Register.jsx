@@ -59,7 +59,7 @@ const Register = () => {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
 
-      const data = await response.json(); // Ambil respons JSON
+      const data = await response.json() // Ambil respons JSON
       console.log("Response data:", data);
     } catch (error) {
       console.error("Error:", error);

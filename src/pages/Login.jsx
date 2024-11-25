@@ -22,7 +22,36 @@ const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async () => {
-    {/* Logic to Login */}
+    try {
+      const response = await fetch("https://auths-backend.vercel.app/api/auth/login", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ 
+          email: email, 
+          password: password, 
+        }),
+      });
+  
+      if (!response.ok) {
+        const errorData = await response.json();
+        alert(errorData.error || "Login failed. Please try again.");
+        return;
+      }
+  
+      const data = await response.json();
+      const { token, user } = data;
+  
+      localStorage.setItem("token", token);
+  
+      localStorage.setItem("user", JSON.stringify(user));
+
+      navigate("/home");
+    } catch (error) {
+      console.error("Error during login:", error);
+      alert("An error occurred. Please try again.");
+    }
   };
 
   return (
