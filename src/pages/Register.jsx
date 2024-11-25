@@ -23,35 +23,45 @@ const Register = () => {
   const [repeatPassword, setRepeatPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showRepeatPassword, setShowRepeatPassword] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
 
   const handleRegister = async () => {
-    if (password !== repeatPassword) {
-      setErrorMessage("Password dan Repeat Password tidak cocok!");
+    if (!name || !email || !password || !repeatPassword) {
+      alert("Please fill in all fields!");
       return;
     }
-
+  
+    if (password !== repeatPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+  
     try {
-      const response = await fetch("http://localhost:8080/api/users", {
+      const response = await fetch("https://auths-backend.vercel.app/api/register", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, password }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          password,
+        }),
       });
-
+  
       const data = await response.json();
-      if (!response.ok) {
-        throw new Error(data.message || "Registrasi gagal");
+  
+      if (response.ok) {
+        alert("Registration successful!");
+        navigate("/login");
+      } else {
+        alert(data.error || "Registration failed, please try again.");
       }
-
-      setSuccessMessage("Registrasi berhasil! Silakan login.");
-      setErrorMessage("");
-      navigate("/login");
     } catch (error) {
-      setErrorMessage(error.message);
-      setSuccessMessage("");
+      console.error("Error registering user:", error);
+      alert("Something went wrong. Please try again later.");
     }
   };
+  
 
   return (
     <div className="min-w-[100vw] min-h-[100vh] flex flex-col items-center px-[6vw] md:px-[4vw] lg:px-[5vw] py-[5vh] bg-[#100424] font-jakarta">
@@ -196,12 +206,6 @@ const Register = () => {
                 CONTINUE
               </button>
             </div>
-            {errorMessage && (
-              <p className="text-red-500 text-sm mt-4">{errorMessage}</p>
-            )}
-            {successMessage && (
-              <p className="text-red-500 text-sm mt-4">{successMessage}</p>
-            )}
           </div>
         </div>
       </div>

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { useLocation, Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
 
 import Logo from "../assets/images/logo_paw.png";
 import SoundBar from "../component/SoundBar";
@@ -21,22 +20,9 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [message, setMessage] = useState("");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post("https://deploypaw.vercel.app/api/login", {
-        email,
-        password,
-      });
-
-      // localStorage.setItem("token", response.data.data);
-
-      setTimeout(() => navigate("/home"), 2000);
-    } catch (error) {
-      setMessage(error.response?.data?.message || "Login gagal. Coba lagi.");
-    }
+  const handleSubmit = async () => {
+    {/* Logic to Login */}
   };
 
   return (
@@ -158,9 +144,6 @@ const Login = () => {
                 CONTINUE
               </button>
             </div>
-            {message && (
-              <p className="text-red-500 text-sm mt-4">{message}</p>
-            )}
           </div>
         </div>
       </div>
