@@ -3,12 +3,12 @@ import Sidebar from "../component/Sidebar";
 import FormField from "../component/FormField";
 
 import Artist1 from "../assets/images/artist_1_paw.png";
-import { getUsername } from "../services/auth.service";
-import { getEmail } from "../services/auth.service";
+// import { getUsername } from "../services/auth.service";
+// import { getEmail } from "../services/auth.service";
 
-const token = localStorage.getItem("token");
-console.log(token)
-console.log(getUsername(token))
+// const token = localStorage.getItem("token");
+// console.log(token)
+// console.log(getUsername(token))
 
 const Profile = () => {
   const [profileImage, setProfileImage] = useState(Artist1);
@@ -20,15 +20,15 @@ const Profile = () => {
   const fileInputRef = useRef(null);
 
   const [formData, setFormData] = useState({
-    username: getUsername(token),
-    email: getEmail(token),
+    // username: getUsername(token),
+    // email: getEmail(token),
     password: "abcdefgh",
     confirmPassword: "abcdefgh",
   });
 
   const [confirmedData, setConfirmedData] = useState({
-    username: getUsername(token),
-    email: getEmail(token),
+    // username: getUsername(token),
+    // email: getEmail(token),
   });
 
   const [deleteData, setDeleteData] = useState({
