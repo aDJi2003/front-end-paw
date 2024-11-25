@@ -3,7 +3,7 @@ import { CiShare2 } from "react-icons/ci";
 import PropTypes from "prop-types";
 import { useState } from "react";
 
-const SongDetailCard = ({ song, lyrics }) => {
+const SongDetailCard = ({ song }) => {
   const [likedSongs, setLikedSongs] = useState({});
   const [playingSong, setPlayingSong] = useState(null);
   const [isSharePopupOpen, setIsSharePopupOpen] = useState(false);
@@ -100,11 +100,10 @@ const SongDetailCard = ({ song, lyrics }) => {
       {/* Lyrics */}
       <div className="mt-1 max-h-48 overflow-auto">
         <h2 className="text-2xl font-bold mb-4">Lyrics</h2>
-        {lyrics.map((line, index) => (
-          <p key={index} className="text-sm text-gray-300 mb-2">
-            {line}
+          <p className="text-sm text-gray-300 mb-2">
+            {song.lyrics}
           </p>
-        ))}
+
       </div>
 
       {/* Share Popup */}
@@ -150,6 +149,7 @@ SongDetailCard.propTypes = {
     time: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired,
     producer: PropTypes.string.isRequired,
+    lyrics: PropTypes.string.isRequired,
   }).isRequired,
   lyrics: PropTypes.arrayOf(PropTypes.string).isRequired,
 };

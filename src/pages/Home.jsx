@@ -3,152 +3,44 @@ import { AiOutlinePlus } from "react-icons/ai";
 import ArtistCard from "../component/ArtistCard";
 import TrendingSongCard from "../component/TrendingSongCard";
 import Sidebar from "../component/Sidebar";
-
-import Song1 from "../assets/images/song_1_paw.png";
-import Song2 from "../assets/images/song_2_paw.png";
-import Song3 from "../assets/images/song_3_paw.png";
-import Song4 from "../assets/images/song_4_paw.png";
-import Song5 from "../assets/images/song_5_paw.png";
-import Artist1 from "../assets/images/artist_1_paw.png";
-import Artist2 from "../assets/images/artist_2_paw.png";
-import Artist3 from "../assets/images/artist_3_paw.png";
-import Artist4 from "../assets/images/artist_4_paw.png";
-import Artist5 from "../assets/images/artist_5_paw.png";
-import Artist6 from "../assets/images/artist_6_paw.png";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const Home = () => {
-  const songs = [
-    {
-      image: Song1,
-      title: "Whatever It Takes",
-      artist: "Imagine Dragons",
-    },
-    {
-      image: Song2,
-      title: "Skyfall",
-      artist: "Adele",
-    },
-    {
-      image: Song3,
-      title: "Superman",
-      artist: "Eminem",
-    },
-    {
-      image: Song4,
-      title: "Softcore",
-      artist: "The Neighbourhood",
-    },
-    {
-      image: Song5,
-      title: "The Lonliest",
-      artist: "Måneskin",
-    },
-    {
-      image: Song1,
-      title: "Whatever It Takes",
-      artist: "Imagine Dragons",
-    },
-    {
-      image: Song2,
-      title: "Skyfall",
-      artist: "Adele",
-    },
-  ];
+  const [songs, setSongs] = useState([]);
+
+  useEffect(() => {
+    axios.get("http://localhost:8080/api/songs", {
+      withCredentials: true
+    }).then((res) => {
+      const data = res.data.data;
+      console.log(data);
+
+      const newArr = [];
+
+      data.map(dat => {
+        const newData = {
+          id: dat._id,
+          image: "/src/assets/images/"+dat.img,
+          title: dat.name,
+          artist: dat.artist,
+        }
+
+        newArr.push(newData);
+      })
+
+      setSongs(newArr);
+    }).catch((e) => {
+      console.log(e);
+    })
+  }, []);
 
   const artists = [
-    {
-      image: Artist1,
-      name: "Eminem",
-    },
-    {
-      image: Artist2,
-      name: "The Weekend",
-    },
-    {
-      image: Artist3,
-      name: "Adele",
-    },
-    {
-      image: Artist4,
-      name: "Lana Del Ray",
-    },
-    {
-      image: Artist5,
-      name: "Harry Styles",
-    },
-    {
-      image: Artist6,
-      name: "Billie Eilish",
-    },
-    {
-      image: Artist1,
-      name: "Eminem",
-    },
-    {
-      image: Artist2,
-      name: "The Weekend",
-    },
-    {
-      image: Artist3,
-      name: "Adele",
-    },
+    
   ];
 
   const trendingSongs = [
-    {
-      id: 1,
-      title: "Sorfcore",
-      artist: "The Neighbourhood",
-      releaseDate: "Nov 4, 2023",
-      album: "Hard to Imagine the Neighbourhood",
-      time: "4:50",
-      image: Song1,
-    },
-    {
-      id: 2,
-      title: "Skyfall Beats",
-      artist: "Nightmares",
-      releaseDate: "Oct 26, 2023",
-      album: "Nightmares",
-      time: "3:16",
-      image: Song2,
-    },
-    {
-      id: 3,
-      title: "Greedy",
-      artist: "Tate McRae",
-      releaseDate: "Dec 30, 2023",
-      album: "Greedy",
-      time: "4:12",
-      image: Song3,
-    },
-    {
-      id: 4,
-      title: "Lovin On Me",
-      artist: "Jack Harlow",
-      releaseDate: "Dec 30, 2023",
-      album: "Lovin On Me",
-      time: "2:56",
-      image: Song4,
-    },
-    {
-      id: 5,
-      title: "Pain the Town Red",
-      artist: "Doja Cat",
-      releaseDate: "Dec 29, 2023",
-      album: "Paint The Town Red",
-      time: "3:32",
-      image: Song5,
-    },
-    {
-      id: 6,
-      title: "New Song",
-      artist: "Artist Name",
-      releaseDate: "Jan 1, 2024",
-      album: "New Album",
-      time: "3:45",
-      image: Song1,
-    },
+    
   ];  
 
   return (
@@ -168,6 +60,7 @@ const Home = () => {
             {songs.map((song, index) => (
               <SongCard
                 key={index}
+                id={song.id}
                 image={song.image}
                 title={song.title}
                 artist={song.artist}

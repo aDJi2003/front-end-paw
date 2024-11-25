@@ -29,8 +29,9 @@ createRoot(document.getElementById('root')).render(
         <Route path="/playlist" element={<Playlist />} />
         <Route path="/artist" element={<Artist />} />
         <Route path="/artist/:artistName" element={<ArtistDetail />} />
-        <Route path="/song/:songTitle" element={<SongDetail />} />
+        {/* <Route path="/song/:songTitle" element={<SongDetail />} /> */}
         <Route path="/song" element={<Song />} />
+        <Route path="/song/:songId" element={<SongDetail />} />
       </Routes>
     </Router>
   </StrictMode>,

@@ -31,7 +31,7 @@ const Login = () => {
         password,
       });
 
-      // localStorage.setItem("token", response.data.data);
+      localStorage.setItem("token", response.data.data);
 
       setTimeout(() => navigate("/home"), 2000);
     } catch (error) {
