@@ -29,39 +29,42 @@ const Register = () => {
       alert("Please fill in all fields!");
       return;
     }
-  
+
     if (password !== repeatPassword) {
       alert("Passwords do not match!");
       return;
     }
-  
+
     try {
-      const response = await fetch("https://auths-backend.vercel.app/api/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name,
-          email,
-          password,
-        }),
-      });
-  
-      const data = await response.json();
-  
-      if (response.ok) {
-        alert("Registration successful!");
-        navigate("/login");
-      } else {
-        alert(data.error || "Registration failed, please try again.");
+      const response = await fetch(
+        "https://auths-backend.vercel.app/api/auth/register",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            username: "testuser456",
+            email: "testuser456@example.com",
+            password: "testpassword",
+          }),
+        }
+      );
+
+      console.log("Status:", response.status);
+
+      if (!response.ok) {
+        const errorData = await response.text();
+        console.error("Error response:", errorData);
+        throw new Error(`HTTP error! status: ${response.status}`);
       }
+
+      const data = await response.json(); // Ambil respons JSON
+      console.log("Response data:", data);
     } catch (error) {
-      console.error("Error registering user:", error);
-      alert("Something went wrong. Please try again later.");
+      console.error("Error:", error);
     }
   };
-  
 
   return (
     <div className="min-w-[100vw] min-h-[100vh] flex flex-col items-center px-[6vw] md:px-[4vw] lg:px-[5vw] py-[5vh] bg-[#100424] font-jakarta">
@@ -202,7 +205,10 @@ const Register = () => {
               </label>
             </div>
             <div className="flex items-center justify-center">
-              <button className="w-full md:w-4/5 py-3 text-lg font-bold text-white bg-gradient-to-r from-[#5200FF] to-[#A100FF] rounded-full hover:shadow-lg transition-shadow duration-300" onClick={handleRegister}>
+              <button
+                className="w-full md:w-4/5 py-3 text-lg font-bold text-white bg-gradient-to-r from-[#5200FF] to-[#A100FF] rounded-full hover:shadow-lg transition-shadow duration-300"
+                onClick={handleRegister}
+              >
                 CONTINUE
               </button>
             </div>
