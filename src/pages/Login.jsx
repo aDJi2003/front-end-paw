@@ -10,7 +10,7 @@ import TwitterLogo from "../assets/images/twitter_paw.png";
 import FacebookLogo from "../assets/images/facebook_paw.png";
 import SocialMediaButton from "../component/SocialMediaButton";
 import FormField from "../component/FormField";
-import { calling_BE } from "../services/method";
+
 
 const Login = () => {
   const navigate = useNavigate();
