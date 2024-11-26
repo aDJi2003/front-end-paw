@@ -24,9 +24,7 @@ const TrendingSongCard = ({
 
   const playlists = [
     { id: 1, name: "Add New Playlist", icon: <FaPlus /> },
-    { id: 2, name: "Playlist A", icon: <FaListAlt /> },
-    { id: 3, name: "Playlist B", icon: <FaListAlt /> },
-    { id: 4, name: "Playlist C", icon: <FaListAlt /> },
+    { id: 2, name: "Playlist Ganteng", icon: <FaListAlt /> },
   ];
 
   const toggleLike = (songId) => {
