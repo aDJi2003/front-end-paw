@@ -1,13 +1,29 @@
 import { FaHeart, FaPlay, FaPlus } from "react-icons/fa";
 import { CiShare2 } from "react-icons/ci";
 import PropTypes from "prop-types";
-import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useState, useRef } from "react";
+import music from '../assets/audio/BohemianRhapsody.mp3';
 
-const SongDetailCard = () => {
+const SongDetailCard = ({ song }) => {
   const [likedSongs, setLikedSongs] = useState({});
   const [playingSong, setPlayingSong] = useState(null);
   const [isSharePopupOpen, setIsSharePopupOpen] = useState(false);
+  const audioRef = useRef(null); // Ref for the audio element
+
+  const ref = useRef(null);
+  const [click, setClick] = useState(false);
+
+  const handleClick = () => {
+    setClick(!click);
+
+    if (!click) {
+      ref.current.play().catch((error) => {
+        console.error('Audio play error:', error);
+      });
+    } else {
+      ref.current.pause();
+    }
+  };
 
   const toggleLike = (songId) => {
     setLikedSongs((prev) => ({
@@ -17,7 +33,17 @@ const SongDetailCard = () => {
   };
 
   const togglePlayPause = (songId) => {
-    setPlayingSong(playingSong === songId ? null : songId);
+    if (playingSong === songId) {
+      // Pause the audio if it's currently playing
+      audioRef.current.pause();
+      setPlayingSong(null);
+    } else {
+      // Play the audio and set the current song as playing
+      audioRef.current.play().catch((error) => {
+        console.error("Audio play error:", error);
+      });
+      setPlayingSong(songId);
+    }
   };
 
   const addToPlaylist = (songId) => {
@@ -33,18 +59,13 @@ const SongDetailCard = () => {
     setIsSharePopupOpen(false);
   };
 
-  const location = useLocation();
-  const song = location.state;
-
-  console.log("Song Image URL: ", song.img);
-
   return (
     <div className="bg-gray-800 text-white p-6 rounded-lg relative">
       {/* Song Details */}
       <div className="flex items-center">
         <div className="flex flex-col items-center mr-6">
           <img
-            src={song.img}
+            src={song.image}
             alt={`${song.title} cover`}
             className="w-48 h-48 md:w-64 md:h-64 rounded-lg"
           />
@@ -59,8 +80,13 @@ const SongDetailCard = () => {
                 onClick={() => toggleLike(song.id)}
               />
             </button>
-            <button className="w-10 h-10 flex items-center justify-center rounded-full bg-[#FF2DF7] text-white">
+            <button
+              className="w-10 h-10 flex items-center justify-center rounded-full bg-[#FF2DF7] text-white"
+              onClick={handleClick}
+              
+            >
               <FaPlay />
+              <audio src={music} ref={ref} loop />
             </button>
             <button className="w-10 h-10 flex items-center justify-center text-[#FF2DF7]">
               <FaPlus
@@ -93,24 +119,24 @@ const SongDetailCard = () => {
 
         {/* Share Song Button */}
         <div className="flex place-self-start">
-        <button
-          onClick={() => setIsSharePopupOpen(true)}
-          className="text-[#FF2DF7] bg-gray-700 px-4 py-2 rounded-lg hover:bg-gray-600 flex gap-x-2"
-        >
-          Share Song
-          <CiShare2 className="text-2xl"/>
-        </button>
+          <button
+            onClick={() => setIsSharePopupOpen(true)}
+            className="text-[#FF2DF7] bg-gray-700 px-4 py-2 rounded-lg hover:bg-gray-600 flex gap-x-2"
+          >
+            Share Song
+            <CiShare2 className="text-2xl" />
+          </button>
         </div>
       </div>
 
       {/* Lyrics */}
       <div className="mt-1 max-h-48 overflow-auto">
         <h2 className="text-2xl font-bold mb-4">Lyrics</h2>
-          <p className="text-sm text-gray-300 mb-2">
-            {song.lyrics}
-          </p>
-
+        <p className="text-sm text-gray-300 mb-2">{song.lyrics}</p>
       </div>
+
+      {/* Audio Element */}
+      <audio ref={audioRef} src={song.audio} />
 
       {/* Share Popup */}
       {isSharePopupOpen && (
@@ -153,11 +179,10 @@ SongDetailCard.propTypes = {
     releaseDate: PropTypes.string.isRequired,
     album: PropTypes.string.isRequired,
     time: PropTypes.string.isRequired,
-    img: PropTypes.string.isRequired,
-    producer: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    audio: PropTypes.string.isRequired,
     lyrics: PropTypes.string.isRequired,
   }).isRequired,
-  lyrics: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 export default SongDetailCard;

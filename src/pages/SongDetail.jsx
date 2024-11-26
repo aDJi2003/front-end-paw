@@ -23,7 +23,7 @@ const SongDetail = () => {
 
   useEffect(() => {
     console.log(songId)
-    axios.get(calling_BE + "/api/songs" + songId, {
+    axios.get(calling_BE + "/api/songs/" + songId, {
         withCredentials: true,
     })
     .then((res) => {
