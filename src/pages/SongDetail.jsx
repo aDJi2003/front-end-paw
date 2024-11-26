@@ -21,7 +21,7 @@ const SongDetail = () => {
 
   useEffect(() => {
     console.log(songId)
-    axios.get("http://localhost:8080/api/songs/" + songId, {
+    axios.get("http://localhost:5000/api/songs/" + songId, {
         withCredentials: true,
     })
     .then((res) => {

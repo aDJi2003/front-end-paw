@@ -5,12 +5,13 @@ import TrendingSongCard from "../component/TrendingSongCard";
 import Sidebar from "../component/Sidebar";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { calling_BE } from "../services/method";
 
 const Home = () => {
   const [songs, setSongs] = useState([]);
 
   useEffect(() => {
-    axios.get("http://localhost:8080/api/songs", {
+    axios.get(calling_BE + "/api/songs", {
       withCredentials: true
     }).then((res) => {
       const data = res.data.data;

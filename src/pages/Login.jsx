@@ -11,6 +11,7 @@ import TwitterLogo from "../assets/images/twitter_paw.png";
 import FacebookLogo from "../assets/images/facebook_paw.png";
 import SocialMediaButton from "../component/SocialMediaButton";
 import FormField from "../component/FormField";
+import { calling_BE } from "../services/method";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -26,12 +27,12 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("https://deploypaw.vercel.app/api/login", {
+      const response = await axios.post(calling_BE + "/api/auth/login", {
         email,
         password,
       });
 
-      localStorage.setItem("token", response.data.data);
+      localStorage.setItem("token", response.data.token);
 
       setTimeout(() => navigate("/home"), 2000);
     } catch (error) {

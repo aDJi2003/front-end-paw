@@ -1,16 +1,28 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import Sidebar from "../component/Sidebar";
 import FormField from "../component/FormField";
-
+import axios from "axios";
 import Artist1 from "../assets/images/artist_1_paw.png";
-// import { getUsername } from "../services/auth.service";
-// import { getEmail } from "../services/auth.service";
-
-// const token = localStorage.getItem("token");
-// console.log(token)
-// console.log(getUsername(token))
+import { calling_BE } from "../services/method";
 
 const Profile = () => {
+  const token = localStorage.getItem("token");
+
+  useEffect(() => {
+    axios.get(calling_BE + "/api/auth/" + token, {
+      withCredentials: true
+    }).then((res) => {
+      const data = res.data;
+
+
+      setConfirmedData(data);
+      setFormData(data);
+      setDeleteData(data);
+    }).catch((e) => {
+      console.log(e);
+    })
+  }, [token]);
+
   const [profileImage, setProfileImage] = useState(Artist1);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -20,21 +32,15 @@ const Profile = () => {
   const fileInputRef = useRef(null);
 
   const [formData, setFormData] = useState({
-    // username: getUsername(token),
-    // email: getEmail(token),
-    password: "abcdefgh",
-    confirmPassword: "abcdefgh",
+    
   });
 
   const [confirmedData, setConfirmedData] = useState({
-    // username: getUsername(token),
-    // email: getEmail(token),
+    
   });
 
   const [deleteData, setDeleteData] = useState({
-    username: "",
-    password: "",
-    confirmPassword: "",
+    
   });
 
   
