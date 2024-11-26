@@ -168,13 +168,13 @@ const Home = () => {
     },
   ];  
 
-  const formatDriveUrl = (url) => {
-    const fileIdMatch = url.match(/\/d\/([a-zA-Z0-9_-]+)\//);
-    if (fileIdMatch && fileIdMatch[1]) {
-      return `https://drive.google.com/uc?export=view&id=${fileIdMatch[1]}`;
-    }
-    return url;
-  };
+  // const formatDriveUrl = (url) => {
+  //   const fileIdMatch = url.match(/\/d\/([a-zA-Z0-9_-]+)\//);
+  //   if (fileIdMatch && fileIdMatch[1]) {
+  //     return `https://drive.google.com/uc?export=view&id=${fileIdMatch[1]}`;
+  //   }
+  //   return url;
+  // };
 
   return (
     <div className="min-h-screen max-w-screen flex font-jakarta overflow-y-auto">
@@ -217,7 +217,7 @@ const Home = () => {
             {myArtists.map((artist) => (
               <ArtistCard
                 key={artist._id}
-                image={formatDriveUrl(artist.image)}
+                image={artist.image}
                 name={artist.name}
               />
             ))}
