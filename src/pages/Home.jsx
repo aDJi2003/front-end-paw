@@ -168,6 +168,10 @@ const Home = () => {
     },
   ];  
 
+  const formatDriveUrl = (url) => {
+    return url.replace("view?usp=drive_link", "uc?export=view");
+  };
+
   return (
     <div className="min-h-screen max-w-screen flex font-jakarta overflow-y-auto">
       {/* Sidebar */}
@@ -203,8 +207,15 @@ const Home = () => {
             Popular <span className="text-[#00F0FF]">Artist</span>
           </h2>
           <div className="flex items-center gap-6 mt-6 overflow-x-auto custom-scroll pb-3">
-            {artists.map((artist, index) => (
+            {/* {artists.map((artist, index) => (
               <ArtistCard key={index} image={artist.image} name={artist.name} />
+            ))} */}
+            {myArtists.map((artist) => (
+              <ArtistCard
+                key={artist._id}
+                image={formatDriveUrl(artist.image)}
+                name={artist.name}
+              />
             ))}
             <div className="flex flex-col gap-3 items-center justify-center">
               <div className="flex items-center justify-center rounded-full w-[80px] h-[80px] bg-[#1E1E1E]">
