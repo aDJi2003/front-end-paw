@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import SongCard from "../component/SongCard";
 import { AiOutlinePlus } from "react-icons/ai";
-// import ArtistCard from "../component/ArtistCard";
+import ArtistCard from "../component/ArtistCard";
 import TrendingSongCard from "../component/TrendingSongCard";
 import Sidebar from "../component/Sidebar";
 import axios from "axios";
@@ -9,6 +9,7 @@ import { calling_BE } from "../services/method";
 
 const Home = () => {
   const [songs, setSongs] = useState([]);
+  const [myArtists, setMyArtists] = useState([]);
 
   useEffect(() => {
     axios.get(calling_BE + "/api/songs", {
@@ -40,20 +41,26 @@ const Home = () => {
     
   // ];
 
-  // useEffect(() => {
-  //   const fetchArtists = async () => {
-  //     try {
-  //       const response = await fetch("https://auths-backend.vercel.app/api/artists");
-  //       const data = await response.json();
-  //       setMyArtists(data);
-  //       console.log(data);
-  //     } catch (error) {
-  //       console.error("Error fetching artists:", error);
-  //     }
-  //   };
-
-  //   fetchArtists();
-  // }, []);
+  useEffect(() => {
+    const fetchArtists = async () => {
+      try {
+        const response = await fetch("https://auths-backend.vercel.app/api/artists");
+        const data = await response.json();
+        
+        const formattedArtists = data.map(artist => ({
+          ...artist,
+          image: `/images/${artist.img}`,
+        }));
+  
+        setMyArtists(formattedArtists);
+        console.log(formattedArtists);
+      } catch (error) {
+        console.error("Error fetching artists:", error);
+      }
+    };
+  
+    fetchArtists();
+  }, []);
 
   const trendingSongs = [
     
@@ -106,13 +113,13 @@ const Home = () => {
             {/* {artists.map((artist, index) => (
               <ArtistCard key={index} image={artist.image} name={artist.name} />
             ))} */}
-            {/* {myArtists.map((artist) => (
+            {myArtists.map((artist) => (
               <ArtistCard
                 key={artist._id}
                 image={artist.image}
                 name={artist.name}
               />
-            ))} */}
+            ))}
             <div className="flex flex-col gap-3 items-center justify-center">
               <div className="flex items-center justify-center rounded-full w-[80px] h-[80px] bg-[#1E1E1E]">
                 <AiOutlinePlus className="text-white text-2xl" />
