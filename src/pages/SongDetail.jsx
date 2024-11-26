@@ -37,7 +37,7 @@ const SongDetail = () => {
           releaseDate: data.date,
           album: data.album,
           time: data.duration,
-          image: "/src/assets/images/"+data.img,
+          image: "/assets/images/"+data.img,
           lyrics: data.lyrics
         };
 
