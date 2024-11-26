@@ -22,7 +22,7 @@ const Home = () => {
       data.map(dat => {
         const newData = {
           id: dat._id,
-          image: "../assets/images/"+dat.img,
+          image: "/assets/images/"+dat.img,
           title: dat.name,
           artist: dat.artist,
         }
