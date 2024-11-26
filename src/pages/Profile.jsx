@@ -22,9 +22,9 @@ const Profile = () => {
     })
   }, [token]);
 
-  useEffect(() => (){
-    axios.put(calling_BE + "/api/auth")
-  })
+  // useEffect(() => (){
+  //   axios.put(calling_BE + "/api/auth")
+  // })
 
   const [profileImage, setProfileImage] = useState(Artist1);
   const [showPassword, setShowPassword] = useState(false);
