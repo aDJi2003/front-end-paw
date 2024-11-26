@@ -110,7 +110,7 @@ const Login = () => {
         <div className="w-full md:w-1/2 flex flex-col justify-center">
           <div className="flex flex-col gap-6">
             <h2 className="text-white font-bold text-2xl md:text-3xl">Login</h2>
-            <div className="flex gap-2 md:gap-4 items-center justify-center">
+            <div className="pr-[2vw] flex gap-2 md:gap-4 items-center justify-center w-full">
               <SocialMediaButton
                 icon={FacebookLogo}
                 label="FACEBOOK"
