@@ -2,8 +2,9 @@ import { FaHeart, FaPlay, FaPlus } from "react-icons/fa";
 import { CiShare2 } from "react-icons/ci";
 import PropTypes from "prop-types";
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 
-const SongDetailCard = ({ song }) => {
+const SongDetailCard = () => {
   const [likedSongs, setLikedSongs] = useState({});
   const [playingSong, setPlayingSong] = useState(null);
   const [isSharePopupOpen, setIsSharePopupOpen] = useState(false);
@@ -31,6 +32,9 @@ const SongDetailCard = ({ song }) => {
   const closePopup = () => {
     setIsSharePopupOpen(false);
   };
+
+  const location = useLocation();
+  const song = location.state;
 
   console.log("Song Image URL: ", song.img);
 

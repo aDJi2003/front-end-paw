@@ -4,9 +4,16 @@ import { useNavigate } from "react-router-dom";
 const SongCard = ({ id, image, title, artist }) => {
     const navigate = useNavigate();
 
-  const handleClick = () => {
-    navigate(`/song/${id}`);
-  };
+    const handleClick = () => {
+      navigate(`/song/${id}`, {
+        state: {
+          id,
+          image,
+          title,
+          artist,
+        },
+      });
+    };
 
   return (
     <div className="w-[190px] flex-shrink-0 bg-[#1e1e1e] rounded-lg p-4 flex flex-col items-center hover:cursor-pointer" onClick={handleClick}>
