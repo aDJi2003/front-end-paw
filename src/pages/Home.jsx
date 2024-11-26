@@ -99,7 +99,7 @@ const Home = () => {
   useEffect(() => {
     const fetchArtists = async () => {
       try {
-        const response = await fetch("https://auths-backend.vercel.app//api/artists");
+        const response = await fetch("https://auths-backend.vercel.app/api/artists");
         const data = await response.json();
         setMyArtists(data);
         console.log(myArtists)
