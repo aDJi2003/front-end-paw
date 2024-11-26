@@ -14,7 +14,6 @@ const Profile = () => {
     }).then((res) => {
       const data = res.data;
 
-
       setConfirmedData(data);
       setFormData(data);
       setDeleteData(data);
