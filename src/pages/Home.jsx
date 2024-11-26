@@ -6,6 +6,8 @@ import TrendingSongCard from "../component/TrendingSongCard";
 import Sidebar from "../component/Sidebar";
 import axios from "axios";
 import { calling_BE } from "../services/method";
+import SongDetailCard from "../component/SongDetailCard";
+
 
 const Home = () => {
   const [songs, setSongs] = useState([]);
@@ -26,7 +28,7 @@ const Home = () => {
           image: `/images/${dat.img}`,
           title: dat.name,
           artist: dat.artist,
-          sound: "/assets/audio"+dat.sound,
+          audio: `/audio/${dat.audio}`,
         }
 
         newArr.push(newData);
@@ -37,6 +39,7 @@ const Home = () => {
       console.log(e);
     })
   }, []);
+
 
   // const artists = [
     

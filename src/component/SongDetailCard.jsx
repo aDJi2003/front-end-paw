@@ -4,24 +4,26 @@ import PropTypes from "prop-types";
 import { useState, useRef } from "react";
 import music from '../assets/audio/BohemianRhapsody.mp3';
 
+
 const SongDetailCard = ({ song }) => {
   const [likedSongs, setLikedSongs] = useState({});
   const [playingSong, setPlayingSong] = useState(null);
   const [isSharePopupOpen, setIsSharePopupOpen] = useState(false);
   const audioRef = useRef(null); // Ref for the audio element
+  const [isClicked, setIsClicked] = useState(false);
+
 
   const ref = useRef(null);
   const [click, setClick] = useState(false);
 
   const handleClick = () => {
-    setClick(!click);
-
-    if (!click) {
-      ref.current.play().catch((error) => {
-        console.error('Audio play error:', error);
-      });
-    } else {
-      ref.current.pause();
+    setIsClicked(!isClicked); // Toggle the clicked state
+    if (ref.current) {
+      if (isClicked) {
+        ref.current.pause(); // Pause the music
+      } else {
+        ref.current.play(); // Play the music
+      }
     }
   };
 
@@ -81,9 +83,15 @@ const SongDetailCard = ({ song }) => {
               />
             </button>
             <button
-              className="w-10 h-10 flex items-center justify-center rounded-full bg-[#FF2DF7] text-white"
-              onClick={handleClick}
-              
+              className={`w-10 h-10 flex items-center justify-center rounded-full text-white ${
+                isClicked
+                  ? "bg-[#00F0FF] hover:bg-[#0088CC]" // Active state styles
+                  : "bg-[#FF2DF7] hover:bg-[#FF00A8]" // Default state styles
+              }`}
+              onClick={() => {
+                handleClick();
+                console.log("Playing song:", song.audio); // Log the song's audio path
+              }}
             >
               <FaPlay />
               <audio src={music} ref={ref} loop />
@@ -136,7 +144,8 @@ const SongDetailCard = ({ song }) => {
       </div>
 
       {/* Audio Element */}
-      <audio ref={audioRef} src={song.audio} />
+      <audio ref={audioRef} src={song.audio}  />
+      
 
       {/* Share Popup */}
       {isSharePopupOpen && (
