@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import Sidebar from "../component/Sidebar";
 import SongDetailCard from "../component/SongDetailCard";
+import NowPlayingBar from "../component/NowPlayingBar"; 
 
 import Song1 from "../assets/images/song_1_paw.png";
 
@@ -15,6 +16,13 @@ const SongDetail = () => {
     album: "Evolve",
     time: "3:45",
     image: Song1,
+  };
+
+  const currentSong = {
+    title: "Whatever It Takes", // {songTitle}
+    artist: "Imagine Dragons",
+    image: Song1,
+    duration: 123,
   };
 
   const lyrics = [
@@ -102,6 +110,13 @@ const SongDetail = () => {
           <SongDetailCard song={song} lyrics={lyrics}/>
         </section>
       </div>
+      <NowPlayingBar
+          image={currentSong.image}
+          title={currentSong.title}
+          artist={currentSong.artist}
+          duration={currentSong.duration}
+      />
+       
     </div>
   );
 };
