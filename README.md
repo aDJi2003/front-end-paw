@@ -91,8 +91,8 @@ Pastikan sudah menginstal:
 ## Web-App Melodify
 https://front-end-paw.vercel.app/
 ## Repository
-Front-End = https://github.com/aDJi2003/front-end-paw
-Back-End = https://github.com/aDJi2003/auths_backend
+  - Front-End = https://github.com/aDJi2003/front-end-paw
+  - Back-End = https://github.com/aDJi2003/auths_backend
 ## Video Presentasi
 https://drive.google.com/file/d/1QxSizofsq9wkaCtA8OA4LC_i33uvrfxs/view?usp=drive_link
 ## PPT
