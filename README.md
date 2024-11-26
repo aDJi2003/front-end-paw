@@ -1,10 +1,11 @@
 # Tugas Akhir Pengembangan Aplikasi Web 
 # 👤 Kelompok 8
-Nasywa Rahmadhani P.S. (22/498375/TK/54665)
-Adji Dharmawan I. (22/499366/TK/54743)
-Pijarwidyanara Andhita H. (22/503741/TK/55061)
-M. Hilmi Dzaki Wismadi (22/497591/TK/54539)
-Fahrin Ulya Nisrina (22/497708/TK/54557)
+  1. Nasywa Rahmadhani P.S. (22/498375/TK/54665)
+  2. Adji Dharmawan I. (22/499366/TK/54743)
+  3. Pijarwidyanara Andhita H. (22/503741/TK/55061)
+  4. M. Hilmi Dzaki Wismadi (22/497591/TK/54539)
+  5. Fahrin Ulya Nisrina (22/497708/TK/54557)
+
 
 # 🎵 Web App Overview
 Melodify adalah sebuah aplikasi _music player_ berbasis web bertujuan memfasilitasi kebutuhan pengguna dalam mendengarkan musik di kesehariannya.
@@ -15,11 +16,13 @@ Fitur-fitur utama dari Melodify antara lain:
   - Menambahkan lagu ke playlist
   - Edit playlist
 
+
 # ⚡ Development Setup
 ## Prerequisites
 Pastikan sudah menginstal:
   - Node.js: minimal versi 16.15
   - MongoDB: secara lokal atau gunakan layanan cloud seperti MongoDB Atlas.
+
 
 ## Setting Up the Project
 1. Clone repository ini:
@@ -40,6 +43,7 @@ Pastikan sudah menginstal:
    Menjalankan aplikasi:
    ```bash
    npm run dev
+
 
 # 📊 Dokumentasi API
 
@@ -80,6 +84,7 @@ Pastikan sudah menginstal:
 | PUT        | `/api/playlists/remove-song` | Menghapus lagu dari playlist pengguna. |
 | DELETE     | `/api/playlists/:id`       | Menghapus playlist.                 |
 | GET        | `/api/playlists/random`    | Mendapatkan playlist secara acak.   |
+
 
 
 # 🔗 LINK TUGAS AKHIR
