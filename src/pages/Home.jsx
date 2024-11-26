@@ -102,7 +102,7 @@ const Home = () => {
         const response = await fetch("https://auths-backend.vercel.app/api/artists");
         const data = await response.json();
         setMyArtists(data);
-        console.log(myArtists)
+        console.log(data);
       } catch (error) {
         console.error("Error fetching artists:", error);
       }
