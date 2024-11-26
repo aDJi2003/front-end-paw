@@ -46,7 +46,7 @@ const SongDetail = () => {
     .catch((err) => {
         console.error("Error:", err);
     });
-  }, []);
+  }, [songId]);
 
   // const lyrics = [
   //   "Falling too fast to prepare for this",  
@@ -133,12 +133,12 @@ const SongDetail = () => {
           <SongDetailCard song={song}/>
         </section>
       </div>
-      <NowPlayingBar
+      {/* <NowPlayingBar
           image={currentSong.image}
           title={currentSong.title}
           artist={currentSong.artist}
           duration={currentSong.duration}
-      />
+      /> */}
        
     </div>
   );

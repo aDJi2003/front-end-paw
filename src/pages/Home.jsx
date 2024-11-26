@@ -36,24 +36,24 @@ const Home = () => {
     })
   }, []);
 
-  const artists = [
+  // const artists = [
     
-  ];
+  // ];
 
-  useEffect(() => {
-    const fetchArtists = async () => {
-      try {
-        const response = await fetch("https://auths-backend.vercel.app/api/artists");
-        const data = await response.json();
-        setMyArtists(data);
-        console.log(data);
-      } catch (error) {
-        console.error("Error fetching artists:", error);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchArtists = async () => {
+  //     try {
+  //       const response = await fetch("https://auths-backend.vercel.app/api/artists");
+  //       const data = await response.json();
+  //       setMyArtists(data);
+  //       console.log(data);
+  //     } catch (error) {
+  //       console.error("Error fetching artists:", error);
+  //     }
+  //   };
 
-    fetchArtists();
-  }, []);
+  //   fetchArtists();
+  // }, []);
 
   const trendingSongs = [
     
@@ -106,13 +106,13 @@ const Home = () => {
             {/* {artists.map((artist, index) => (
               <ArtistCard key={index} image={artist.image} name={artist.name} />
             ))} */}
-            {myArtists.map((artist) => (
+            {/* {myArtists.map((artist) => (
               <ArtistCard
                 key={artist._id}
                 image={artist.image}
                 name={artist.name}
               />
-            ))}
+            ))} */}
             <div className="flex flex-col gap-3 items-center justify-center">
               <div className="flex items-center justify-center rounded-full w-[80px] h-[80px] bg-[#1E1E1E]">
                 <AiOutlinePlus className="text-white text-2xl" />
