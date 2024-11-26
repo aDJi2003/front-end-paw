@@ -38,7 +38,7 @@ const SongDetailCard = ({ song }) => {
       <div className="flex items-center">
         <div className="flex flex-col items-center mr-6">
           <img
-            src={song.image}
+            src={song.img}
             alt={`${song.title} cover`}
             className="w-48 h-48 md:w-64 md:h-64 rounded-lg"
           />
@@ -147,7 +147,7 @@ SongDetailCard.propTypes = {
     releaseDate: PropTypes.string.isRequired,
     album: PropTypes.string.isRequired,
     time: PropTypes.string.isRequired,
-    image: PropTypes.string.isRequired,
+    img: PropTypes.string.isRequired,
     producer: PropTypes.string.isRequired,
     lyrics: PropTypes.string.isRequired,
   }).isRequired,
