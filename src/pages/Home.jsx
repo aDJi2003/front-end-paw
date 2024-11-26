@@ -25,6 +25,7 @@ const Home = () => {
           image: "/assets/images/"+dat.img,
           title: dat.name,
           artist: dat.artist,
+          sound: "/assets/audio"+dat.sound,
         }
 
         newArr.push(newData);
@@ -88,6 +89,7 @@ const Home = () => {
                 image={song.image}
                 title={song.title}
                 artist={song.artist}
+                audio={song.sound}
               />
             ))}
             <div className="flex flex-col gap-3 items-center justify-center">

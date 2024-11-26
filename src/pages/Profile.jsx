@@ -59,13 +59,6 @@ const Profile = () => {
     setDeleteData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const handleSubmit = () => {
-    setConfirmedData({
-      username: formData.username,
-      email: formData.email,
-    });
-  };
-
   const handleCancel = () => {
     setFormData({
       ...formData,
@@ -84,6 +77,33 @@ const Profile = () => {
       const imageURL = URL.createObjectURL(file);
       setProfileImage(imageURL);
     }
+  };
+
+  const updateProfile = async () => {
+    try {
+      const response = await axios.put(
+        `${calling_BE}/api/auth/${token}`,
+        {
+          username: formData.username,
+          email: formData.email,
+          password: formData.password,
+        },
+        { withCredentials: true }
+      );
+      console.log("Profile updated:", response.data);
+      setConfirmedData(response.data); // Update UI with the latest data
+    } catch (error) {
+      console.error("Failed to update profile:", error);
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (formData.password !== formData.confirmPassword) {
+      console.error("Passwords do not match!");
+      return;
+    }
+    updateProfile();
   };
 
   return (
@@ -183,6 +203,7 @@ const Profile = () => {
               <button
                 type="submit"
                 className="bg-gradient-to-r from-[#5200FF] to-[#A100FF] text-white py-3 px-6 rounded-lg font-bold text-lg hover:shadow-lg transition-shadow duration-300"
+                onClick={handleSubmit}
               >
                 Update
               </button>
