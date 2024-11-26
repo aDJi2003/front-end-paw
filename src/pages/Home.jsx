@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import SongCard from "../component/SongCard";
 import { AiOutlinePlus } from "react-icons/ai";
-import ArtistCard from "../component/ArtistCard";
+// import ArtistCard from "../component/ArtistCard";
 import TrendingSongCard from "../component/TrendingSongCard";
 import Sidebar from "../component/Sidebar";
 import axios from "axios";
@@ -22,7 +22,7 @@ const Home = () => {
       data.map(dat => {
         const newData = {
           id: dat._id,
-          image: "/assets/images/"+dat.img,
+          image: `/images/${dat.img}`,
           title: dat.name,
           artist: dat.artist,
         }
