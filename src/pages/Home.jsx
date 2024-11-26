@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import SongCard from "../component/SongCard";
 import { AiOutlinePlus } from "react-icons/ai";
 import ArtistCard from "../component/ArtistCard";
@@ -17,6 +18,7 @@ import Artist5 from "../assets/images/artist_5_paw.png";
 import Artist6 from "../assets/images/artist_6_paw.png";
 
 const Home = () => {
+  const [myArtists, setMyArtists] = useState([]);
   const songs = [
     {
       image: Song1,
@@ -93,6 +95,21 @@ const Home = () => {
       name: "Adele",
     },
   ];
+
+  useEffect(() => {
+    const fetchArtists = async () => {
+      try {
+        const response = await fetch("https://auths-backend.vercel.app//api/artists");
+        const data = await response.json();
+        setMyArtists(data);
+        console.log(myArtists)
+      } catch (error) {
+        console.error("Error fetching artists:", error);
+      }
+    };
+
+    fetchArtists();
+  }, []);
 
   const trendingSongs = [
     {
