@@ -49,7 +49,7 @@ const Home = () => {
         
         const formattedArtists = data.map(artist => ({
           ...artist,
-          image: `/images/${artist.img}`,
+          image: `/images/${artist.image}`,
         }));
   
         setMyArtists(formattedArtists);
