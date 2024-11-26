@@ -2,15 +2,67 @@ import SongCard from "../component/SongCard";
 import { AiOutlinePlus } from "react-icons/ai";
 import TrendingSongCard from "../component/TrendingSongCard";
 import Sidebar from "../component/Sidebar";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { calling_BE } from "../services/method";
 
 const Song = () => {
-  const songs = [
-    
-  ];
+  const [songs, setSongs] = useState([]);
 
-  const trendingSongs = [
-    
-  ];  
+  useEffect(() => {
+    axios.get(calling_BE + "/api/songs", {
+      withCredentials: true
+    }).then((res) => {
+      const data = res.data.data;
+      console.log(data);
+
+      const newArr = [];
+
+      data.map(dat => {
+        const newData = {
+          id: dat._id,
+          image: "/src/assets/images/"+dat.img,
+          title: dat.name,
+          artist: dat.artist,
+        }
+
+        newArr.push(newData);
+      })
+
+      setSongs(newArr);
+    }).catch((e) => {
+      console.log(e);
+    })
+  }, []);
+
+
+  const [trendingSongs, setTrendingSongs] = useState([]);
+  
+  useEffect(() => {
+    axios.get(calling_BE + "/api/songs", {
+      withCredentials: true
+    }).then((res) => {
+      const data = res.data.data;
+      console.log(data);
+
+      const newArr = [];
+
+      data.map(dat => {
+        const newData = {
+          id: dat._id,
+          image: "/src/assets/images/"+dat.img,
+          title: dat.name,
+          artist: dat.artist,
+        }
+
+        newArr.push(newData);
+      })
+
+      setTrendingSongs(newArr);
+    }).catch((e) => {
+      console.log(e);
+    })
+  }, []);
 
   return (
     <div className="min-h-screen max-w-screen flex font-jakarta overflow-y-auto">
