@@ -2,6 +2,7 @@ import { useParams } from "react-router-dom";
 import Sidebar from "../component/Sidebar";
 import SongDetailCard from "../component/SongDetailCard";
 import NowPlayingBar from "../component/NowPlayingBar"; 
+import { calling_BE } from "../services/method";
 
 import Song1 from "../assets/images/song_1_paw.png";
 import { useEffect, useState } from "react";
@@ -22,7 +23,7 @@ const SongDetail = () => {
 
   useEffect(() => {
     console.log(songId)
-    axios.get("https://auths-backend.vercel.app/api/songs/" + songId, {
+    axios.get(calling_BE + "/api/songs" + songId, {
         withCredentials: true,
     })
     .then((res) => {
