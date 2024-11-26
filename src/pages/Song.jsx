@@ -21,7 +21,7 @@ const Song = () => {
       data.map(dat => {
         const newData = {
           id: dat._id,
-          image: "/src/assets/images/"+dat.img,
+          image: "/images/"+dat.img,
           title: dat.name,
           artist: dat.artist,
         }
@@ -50,7 +50,7 @@ const Song = () => {
       data.map(dat => {
         const newData = {
           id: dat._id,
-          image: "/src/assets/images/"+dat.img,
+          image: "/images/"+dat.img,
           title: dat.name,
           artist: dat.artist,
         }
