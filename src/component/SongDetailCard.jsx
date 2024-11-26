@@ -32,6 +32,8 @@ const SongDetailCard = ({ song }) => {
     setIsSharePopupOpen(false);
   };
 
+  console.log("Song Image URL: ", song.img);
+
   return (
     <div className="bg-gray-800 text-white p-6 rounded-lg relative">
       {/* Song Details */}
