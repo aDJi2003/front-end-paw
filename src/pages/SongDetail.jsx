@@ -12,17 +12,17 @@ const SongDetail = () => {
 
   const [song, setSong] = useState({
     id: 1,
-    title: "TES", // {songTitle}
-    artist: "Imagine Dragons",
-    releaseDate: "9 May 2017",
-    album: "Evolve",
-    time: "3:45",
-    image: Song1,
+    title: "", // {songTitle}
+    artist: "",
+    releaseDate: "",
+    album: "",
+    time: "",
+    image: "",
   });
 
   useEffect(() => {
     console.log(songId)
-    axios.get("http://localhost:5000/api/songs/" + songId, {
+    axios.get("https://auths-backend.vercel.app/api/songs/" + songId, {
         withCredentials: true,
     })
     .then((res) => {
