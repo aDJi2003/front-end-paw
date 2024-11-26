@@ -1,12 +1,13 @@
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 
-const SongCard = ({ image, title, artist }) => {
+const SongCard = ({ id, image, title, artist }) => {
     const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/song/${title}`);
+    navigate(`/song/${id}`);
   };
+
   return (
     <div className="w-[190px] flex-shrink-0 bg-[#1e1e1e] rounded-lg p-4 flex flex-col items-center hover:cursor-pointer" onClick={handleClick}>
       <img
@@ -23,6 +24,7 @@ const SongCard = ({ image, title, artist }) => {
 };
 
 SongCard.propTypes = {
+  id: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   artist: PropTypes.string.isRequired,
